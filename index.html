@@ -290,6 +290,7 @@
   }
   .contact-links a:hover{ color:var(--teal); }
   .contact-links .k{ color:var(--text-faint); }
+  .contact-links svg{ width:16px; height:16px; flex:none; color:var(--teal); }
 
   footer{
     border-top:1px solid var(--border); padding:26px 0;
@@ -303,14 +304,33 @@
   }
 
   :focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+
+  /* ---------- scroll to top ---------- */
+  #to-top{
+    position:fixed; right:22px; bottom:22px; z-index:45;
+    width:42px; height:42px; border-radius:50%;
+    background:var(--panel); border:1px solid var(--border-strong);
+    color:var(--teal); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; text-decoration:none;
+    opacity:0; transform:translateY(8px); pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease, border-color .15s ease;
+    box-shadow:0 10px 24px -12px #00000090;
+  }
+  #to-top.visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  #to-top:hover{ border-color:var(--teal); }
+  #to-top svg{ width:16px; height:16px; }
 </style>
 </head>
 <body>
 <div class="scan-overlay" aria-hidden="true"></div>
 
-<header>
+<a href="#top" id="to-top" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</a>
+
+<header id="top">
   <nav class="wrap">
-    <div class="logo"><span class="dot"></span> SK / SEC&#8209;LEAD</div>
+    <div class="logo"><span class="dot"></span></div>
     <div class="navlinks">
       <a href="#profile"><span class="idx">01</span>Profile</a>
       <a href="#log"><span class="idx">02</span>Experience</a>
@@ -326,7 +346,6 @@
   <section class="hero wrap" style="border-top:none;">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow">SYSTEM STATUS &mdash; OPERATIONAL</div>
         <h1>Sriram Kalyanraman</h1>
         <p class="hero-sub">Cyber Security Lead building and running enterprise security operations &mdash; from SOC design to board-level risk reporting &mdash; across telecom, public sector, and financial environments in Ireland and the UK.</p>
         <div class="hero-actions">
@@ -654,8 +673,18 @@
         <h2 class="big">Let's talk about your security posture &mdash; or a project.</h2>
         <div class="contact-links">
           <a href="contact.html"><span class="k">&rarr;</span> Open the contact page</a>
-          <a href="mailto:sriramkalyan97@gmail.com"><span class="k">email &mdash;</span> sriramkalyan97@gmail.com</a>
-          <a href="tel:+353873317787"><span class="k">phone &mdash;</span> +353 87 331 7787</a>
+          <a href="mailto:sriramkalyan97@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
+            sriramkalyan97@gmail.com
+          </a>
+          <a href="tel:+353873317787">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1.1.4 2.1.7 3.1a2 2 0 0 1-.5 2.1L8 10.2a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c1 .3 2 .6 3.1.7a2 2 0 0 1 1.7 2.1z"/></svg>
+            +353 87 331 7787
+          </a>
+          <a href="https://linkedin.com/in/sriram-kalyanraman" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/sriram-kalyanraman
+          </a>
         </div>
       </div>
     </div>
@@ -702,6 +731,16 @@
     }
 
     setInterval(pushLine, 4200);
+  })();
+
+  // scroll to top button
+  (function(){
+    var btn = document.getElementById('to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 480) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }, { passive:true });
   })();
 </script>
 
