@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Sriram Kalyanraman</title>
+<meta name="description" content="Get in touch with Sriram Kalyanraman for security advisory, full-time opportunities, or freelance and content projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E12;
+    --panel:#11161D;
+    --panel-2:#141B23;
+    --border:#20293390;
+    --border-strong:#2A3540;
+    --text:#E7ECEF;
+    --text-dim:#8FA0AC;
+    --text-faint:#5B6B76;
+    --teal:#4FD8C4;
+    --teal-dim:#4FD8C433;
+    --amber:#F0B429;
+    --red:#EF5A5A;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 15% 8%, #143a3620 0%, transparent 45%),
+      radial-gradient(circle at 85% 92%, #2a1f0c20 0%, transparent 45%);
+  }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+  a{ color:inherit; }
+  ::selection{ background:var(--teal-dim); color:var(--text); }
+
+  .scan-overlay{
+    position:fixed; inset:0; pointer-events:none; z-index:50;
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.014) 0px, rgba(255,255,255,0.014) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:overlay;
+  }
+
+  header{
+    position:sticky; top:0; z-index:40; background:rgba(10,14,18,0.86);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+  }
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo{ font-family:var(--mono); font-size:14px; letter-spacing:0.02em; display:flex; align-items:center; gap:10px; }
+  .logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px 1px var(--teal); animation:pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.35} }
+  .navlinks{ display:flex; gap:28px; font-family:var(--mono); font-size:12.5px; }
+  .navlinks a{ text-decoration:none; color:var(--text-dim); letter-spacing:0.03em; padding:6px 0; border-bottom:1px solid transparent; transition:.15s; }
+  .navlinks a:hover, .navlinks a.active{ color:var(--teal); border-color:var(--teal); }
+  .navlinks .idx{ color:var(--text-faint); margin-right:6px; }
+  @media (max-width:720px){ .navlinks{ display:none; } }
+
+  main{ padding:72px 0 100px; }
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; color:var(--teal); letter-spacing:0.08em;
+    display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before{ content:''; width:26px; height:1px; background:var(--teal); opacity:.6; }
+  h1{ font-weight:800; letter-spacing:-0.02em; font-size:clamp(32px,5vw,50px); line-height:1.08; max-width:16ch; }
+  .lede{ margin-top:18px; max-width:58ch; color:var(--text-dim); font-size:16.5px; }
+
+  .contact-layout{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; margin-top:52px; align-items:start; }
+  @media (max-width:840px){ .contact-layout{ grid-template-columns:1fr; } }
+
+  /* form */
+  form{ background:var(--panel); border:1px solid var(--border-strong); border-radius:6px; padding:28px; }
+  .field{ margin-bottom:20px; }
+  .field:last-of-type{ margin-bottom:0; }
+  label{
+    display:block; font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px;
+  }
+  input, select, textarea{
+    width:100%; background:var(--panel-2); border:1px solid var(--border-strong); border-radius:4px;
+    color:var(--text); font-family:var(--sans); font-size:14.5px; padding:11px 13px;
+  }
+  input:focus, select:focus, textarea:focus{ outline:2px solid var(--teal); outline-offset:1px; border-color:var(--teal); }
+  textarea{ resize:vertical; min-height:120px; }
+  select{ font-family:var(--sans); appearance:none; }
+
+  .submit-row{ margin-top:26px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.02em; padding:12px 22px; border-radius:3px;
+    border:none; cursor:pointer; background:var(--teal); color:#06110F; font-weight:600; transition:.15s;
+  }
+  .btn:hover{ background:#6be6d4; }
+  .submit-note{ font-family:var(--mono); font-size:11.5px; color:var(--text-faint); }
+  .form-status{ font-family:var(--mono); font-size:12.5px; color:var(--teal); min-height:18px; }
+
+  /* side panel */
+  .side{ display:flex; flex-direction:column; gap:14px; }
+  .card{ background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:20px 22px; }
+  .card-label{ font-family:var(--mono); font-size:10.5px; color:var(--text-faint); letter-spacing:0.06em; text-transform:uppercase; }
+  .card a{
+    display:block; margin-top:8px; font-family:var(--mono); font-size:14.5px; color:var(--text);
+    text-decoration:none; transition:.15s;
+  }
+  .card a:hover{ color:var(--teal); }
+  .card p{ margin-top:8px; color:var(--text-dim); font-size:13.5px; }
+  .status-led{ display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; color:var(--text-dim); }
+  .status-led .dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 6px var(--teal); animation:pulse 2.4s ease-in-out infinite; }
+
+  footer{
+    border-top:1px solid var(--border); padding:26px 0; margin-top:60px;
+    font-family:var(--mono); font-size:11.5px; color:var(--text-faint);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+  :focus-visible{ outline:2px solid var(--teal); outline-offset:2px; }
+</style>
+</head>
+<body>
+<div class="scan-overlay" aria-hidden="true"></div>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><span class="dot"></span> SK / SEC&#8209;LEAD</div>
+    <div class="navlinks">
+      <a href="index.html#profile"><span class="idx">01</span>Profile</a>
+      <a href="index.html#log"><span class="idx">02</span>Experience</a>
+      <a href="index.html#capabilities"><span class="idx">03</span>Capabilities</a>
+      <a href="index.html#freelance"><span class="idx">04</span>Freelance</a>
+      <a href="index.html#credentials"><span class="idx">05</span>Credentials</a>
+      <a href="contact.html" class="active"><span class="idx">06</span>Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">OPEN CHANNEL</div>
+  <h1>Let's start a conversation.</h1>
+  <p class="lede">Full-time opportunities, security advisory, or a freelance project &mdash; fill in the form and it opens directly in your email client, addressed to me. No accounts, no middleman.</p>
+
+  <div class="contact-layout">
+    <form id="contact-form">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="email">Your email</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="reason">What's this about</label>
+        <select id="reason" name="reason">
+          <option value="Full-time opportunity">Full-time opportunity</option>
+          <option value="Security advisory / consulting">Security advisory / consulting</option>
+          <option value="Freelance project">Freelance project (consulting or content writing)</option>
+          <option value="General enquiry">General enquiry</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="A short note on what you need and any timeline."></textarea>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn">Send message</button>
+        <span class="submit-note">opens your email app, prefilled</span>
+      </div>
+      <div class="form-status" id="form-status" role="status"></div>
+    </form>
+
+    <div class="side">
+      <div class="card">
+        <div class="status-led"><span class="dot"></span> Available for new conversations</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Email</div>
+        <a href="mailto:sriramkalyan97@gmail.com">sriramkalyan97@gmail.com</a>
+      </div>
+      <div class="card">
+        <div class="card-label">Phone</div>
+        <a href="tel:+353873317787">+353 87 331 7787</a>
+      </div>
+      <div class="card">
+        <div class="card-label">Based in</div>
+        <a href="#">Limerick, Ireland</a>
+      </div>
+      <div class="card">
+        <div class="card-label">Freelance &amp; content</div>
+        <p>Open to select freelance security consulting and cyber security content writing work alongside full-time responsibilities &mdash; select "Freelance project" above.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="wrap">
+  <span>&copy; <span id="year"></span> Sriram Kalyanraman</span>
+  <span><a href="index.html" style="text-decoration:none;">&larr; Back to portfolio</a></span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var reason = document.getElementById('reason').value;
+    var message = document.getElementById('message').value.trim();
+
+    var subject = '[' + reason + '] Enquiry from ' + name;
+    var body = 'Name: ' + name + '\nEmail: ' + email + '\nReason: ' + reason + '\n\nMessage:\n' + message;
+
+    var mailto = 'mailto:sriramkalyan97@gmail.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
+    document.getElementById('form-status').textContent = 'Opening your email client…';
+  });
+</script>
+
+</body>
+</html>
