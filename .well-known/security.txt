@@ -1,0 +1,5 @@
+Contact: mailto:srkgfm@gmail.com
+Expires: 2027-08-24T23:59:59Z
+Preferred-Languages: en
+Canonical: https://sriramkalyanraman.github.io/sk-portfolio/.well-known/security.txt
+Policy: https://sriramkalyanraman.github.io/sk-portfolio/SECURITY.md
