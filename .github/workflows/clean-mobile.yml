@@ -1,0 +1,56 @@
+name: Clean mobile responsive markup
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Remove duplicate mobile overrides
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Keep the original mobile override block and remove later duplicate blocks.
+          marker = '/* ---------- mobile-responsive-overrides ---------- */'
+          end = '/* ---------- end mobile-responsive-overrides ---------- */'
+          first = s.find(marker)
+          while first != -1:
+              second = s.find(marker, first + len(marker))
+              if second == -1:
+                  break
+              end_pos = s.find(end, second)
+              if end_pos == -1:
+                  break
+              end_pos += len(end)
+              s = s[:second] + s[end_pos:]
+
+          # Keep only the first mobile-menu event-handler script.
+          pattern = re.compile(r'<script>\s*\(\(\) => \{\s*const toggle = document\.querySelector\(\'.mobile-menu-toggle\'\);.*?</script>', re.S)
+          matches = list(pattern.finditer(s))
+          for m in reversed(matches[1:]):
+              s = s[:m.start()] + s[m.end():]
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit and remove updater
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if ! git diff --cached --quiet; then git commit -m "Clean mobile responsive markup"; fi
+          git rm -f .github/workflows/clean-mobile.yml || true
+          if ! git diff --cached --quiet; then git commit -m "Remove temporary mobile cleanup workflow"; fi
+          git push
