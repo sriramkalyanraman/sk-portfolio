@@ -544,7 +544,7 @@
 </header>
 
 <main>
-  <section clamatrix mobile-service-gridro wrap" style="border-top:none;" class="mobile-service-section">
+  <section class="hero wrap" style="border-top:none;">
     <div class="hero-grid">
       <div>
         <h1>Sriram Kalyanraman</h1>
@@ -1024,5 +1024,16 @@
     })();
     </script>
     
+
+<script>
+(() => {
+  const section = [...document.querySelectorAll('section')].find(s => /Freelance\s*&\s*advisory/i.test(s.textContent));
+  if (section) {
+    const grid = [...section.querySelectorAll('*')].find(el => getComputedStyle(el).display === 'grid');
+    if (grid) grid.classList.add('mobile-service-grid');
+  }
+})();
+</script>
+
 </body>
 </html>
