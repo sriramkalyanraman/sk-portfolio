@@ -24,6 +24,12 @@ for path in html + js:
 
 for path in html:
     text = path.read_text(errors='ignore')
+    if not re.search(r'(?i)Content-Security-Policy', text):
+        issues.append(f'{path}: Content-Security-Policy not declared')
+    for match in re.finditer(r'<script\b([^>]*)>', text, re.I):
+        attrs = match.group(1)
+        if not re.search(r'\bsrc\s*=', attrs, re.I):
+            issues.append(f'{path}: inline script detected; use an external script under CSP')
     for match in re.finditer(r'<a\b[^>]*target=[\"\']_blank[\"\'][^>]*>', text, re.I):
         tag = match.group(0)
         if not re.search(r'\brel=[\"\'][^\"\']*\bnoopener\b', tag, re.I):
