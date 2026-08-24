@@ -7,9 +7,19 @@
   var status = document.getElementById('form-status');
   var subject = document.getElementById('form-subject');
   var honey = form && form.querySelector('input[name="_honey"]');
+  var submitRow = button && button.closest('.submit-row');
   var startedAt = Date.now();
 
   if (!form || !button || !status || !subject) return;
+
+  /* Keep the submit action visually clean: centre the button and remove the helper note. */
+  if (submitRow) {
+    var submitNote = submitRow.querySelector('.submit-note');
+    if (submitNote) submitNote.remove();
+    submitRow.style.justifyContent = 'center';
+    button.style.width = 'auto';
+    button.style.minWidth = '180px';
+  }
 
   function setStatus(message, error) {
     status.classList.toggle('error', Boolean(error));
