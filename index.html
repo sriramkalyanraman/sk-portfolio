@@ -995,34 +995,7 @@
 </script>
 
 
-    <script>
-    (() => {
-      const toggle = document.querySelector('.mobile-menu-toggle');
-      const menu = document.getElementById('mobileMenu');
-      if (toggle && menu) {
-        const close = () => {
-          toggle.setAttribute('aria-expanded','false');
-          toggle.setAttribute('aria-label','Open navigation');
-          menu.classList.remove('open');
-          menu.setAttribute('aria-hidden','true');
-        };
-        toggle.addEventListener('click', () => {
-          const open = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!open));
-          toggle.setAttribute('aria-label', open ? 'Open navigation' : 'Close navigation');
-          menu.classList.toggle('open', !open);
-          menu.setAttribute('aria-hidden', String(open));
-        });
-        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-      }
-      const freelance = [...document.querySelectorAll('section')].find(s => /Freelance\s*&\s*advisory/i.test(s.textContent));
-      if (freelance) {
-        const grid = [...freelance.querySelectorAll('*')].find(el => getComputedStyle(el).display === 'grid');
-        if (grid) grid.classList.add('mobile-service-grid');
-      }
-    })();
-    </script>
+    
     
 
 <script>
