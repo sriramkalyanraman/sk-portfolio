@@ -1,0 +1,27 @@
+name: Security audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-security-audit:
+    name: Static security audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run dependency-free security checks
+        run: python3 scripts/security-audit.py
+
+      - name: Verify security disclosure files
+        run: |
+          test -f SECURITY.md
+          test -f .well-known/security.txt
