@@ -2,18 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('whatsapp-enquiry-form');
   if (!form) return;
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    if (!form.checkValidity()) {
-      form.querySelector(':invalid')?.focus();
-      return;
-    }
-
+  const getData = () => {
     const data = new FormData(form);
     const value = (name) => (data.get(name) || '').toString().trim();
+    return { data, value };
+  };
 
-    const message = [
+  const buildMessage = () => {
+    const { value } = getData();
+
+    return [
       'NEW WEBSITE ENQUIRY',
       '',
       `Name: ${value('name')}`,
@@ -31,7 +29,42 @@ document.addEventListener('DOMContentLoaded', () => {
       '',
       'Sent from the S Kalyanraman web enquiry form.'
     ].join('\n');
+  };
 
+  // Add the email option beside the WhatsApp button without changing the page markup.
+  const actions = form.querySelector('.enquiry-actions');
+  const whatsappButton = actions?.querySelector('button[type="submit"]');
+  if (actions && whatsappButton && !document.getElementById('mail-enquiry-button')) {
+    const mailButton = document.createElement('button');
+    mailButton.id = 'mail-enquiry-button';
+    mailButton.type = 'button';
+    mailButton.className = 'btn ghost';
+    mailButton.textContent = 'SEND ENQUIRY ON MAIL →';
+
+    mailButton.addEventListener('click', () => {
+      if (!form.checkValidity()) {
+        form.querySelector(':invalid')?.focus();
+        return;
+      }
+
+      const subject = 'New Website Enquiry — S Kalyanraman';
+      const body = buildMessage();
+      const mailtoUrl = `mailto:srkgfm@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+    });
+
+    actions.insertBefore(mailButton, whatsappButton.nextSibling);
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.querySelector(':invalid')?.focus();
+      return;
+    }
+
+    const message = buildMessage();
     const whatsappUrl = `https://wa.me/353873317787?text=${encodeURIComponent(message)}`;
     window.location.href = whatsappUrl;
   });
