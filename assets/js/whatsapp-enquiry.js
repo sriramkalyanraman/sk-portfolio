@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
 
+    if (!form.checkValidity()) {
+      form.querySelector(':invalid')?.focus();
+      return;
+    }
+
     const data = new FormData(form);
     const value = (name) => (data.get(name) || '').toString().trim();
 
