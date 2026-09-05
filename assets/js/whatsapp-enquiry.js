@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       value('details'),
       '',
       'Sent from the S Kalyanraman web enquiry form.'
-    ].join('\\n');
+    ].join('\n');
 
     const whatsappUrl = `https://wa.me/353873317787?text=${encodeURIComponent(message)}`;
     window.location.href = whatsappUrl;
