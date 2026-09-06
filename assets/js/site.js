@@ -88,4 +88,17 @@
 
     window.setInterval(appendLine, 4200);
   }
+
+  /* On the portfolio hero, use the business CTA in the radar's slot. */
+  var radar = document.querySelector('.radar-wrap');
+  var businessCta = document.querySelector('.business-cta');
+  if (radar && businessCta) {
+    radar.replaceWith(businessCta);
+    businessCta.style.margin = '0 auto';
+    businessCta.style.maxWidth = '300px';
+    businessCta.style.minHeight = window.matchMedia('(max-width: 900px)').matches ? '220px' : '300px';
+    businessCta.style.display = 'flex';
+    businessCta.style.flexDirection = 'column';
+    businessCta.style.justifyContent = 'center';
+  }
 })();
