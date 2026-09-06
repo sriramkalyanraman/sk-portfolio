@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
       label: 'KINCORA GARAGE',
       url: 'https://sriramkalyanraman.github.io/kincora-garage/',
       shots: [
-        { title: 'Garage Homepage', subtitle: 'Local automotive service website' },
-        { title: 'Services & Contact', subtitle: 'Service-led layout built for local enquiries' }
+        { image: 'assets/projects/kincora-1.svg', title: 'Garage Homepage', subtitle: 'Local automotive service website' },
+        { image: 'assets/projects/kincora-2.svg', title: 'Services', subtitle: 'Service-led layout built for local enquiries' }
       ]
     }
   ];
