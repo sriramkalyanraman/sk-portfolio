@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
       label: 'AISHWARYA SREENIVASAN',
       url: 'https://sriramkalyanraman.github.io/aishwarya-sreenivasan/',
       shots: [
-        { image: 'assets/projects/aishwarya-1.jpg', title: 'Homepage', subtitle: 'Professional psychology / wellbeing website' },
-        { image: 'assets/projects/aishwarya-2.jpg', title: 'About & Approach', subtitle: 'Clear trust-led content and calm visual hierarchy' },
-        { image: 'assets/projects/aishwarya-3.jpg', title: 'Contact', subtitle: 'Simple enquiry flow with private contact details redacted' }
+        { image: 'assets/projects/aishwarya-1.svg', title: 'Homepage', subtitle: 'Professional psychology / wellbeing website' },
+        { image: 'assets/projects/aishwarya-2.svg', title: 'About & Approach', subtitle: 'Clear trust-led content and calm visual hierarchy' },
+        { image: 'assets/projects/aishwarya-3.svg', title: 'Contact', subtitle: 'Simple enquiry flow with private contact details redacted' }
       ]
     },
     {
