@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <h3>Who is Sriram Kalyanraman?</h3>
           <p>See my professional background, cybersecurity leadership experience and capabilities.</p>
         </div>
-        <a class="btn portfolio-cta-button" href="cybersecurity.html">VISIT PORTFOLIO →</a>`;
+        <a class="btn portfolio-cta-button" href="portfolio.html">VISIT PORTFOLIO →</a>`;
       enquirySection.insertAdjacentElement('afterend', portfolioCta);
 
       const portfolioStyle = document.createElement('style');
