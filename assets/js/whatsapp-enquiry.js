@@ -48,6 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!form.checkValidity()) { form.querySelector(':invalid')?.focus(); return; }
       window.location.href = `https://wa.me/353873317787?text=${encodeURIComponent(buildMessage())}`;
     });
+
+    const enquirySection = form.closest('section');
+    if (enquirySection && !document.getElementById('portfolio-cta')) {
+      const portfolioCta = document.createElement('div');
+      portfolioCta.id = 'portfolio-cta';
+      portfolioCta.innerHTML = `
+        <div class="portfolio-cta-copy">
+          <span>BEFORE WE BUILD YOUR WEBSITE</span>
+          <h3>Who is Sriram Kalyanraman?</h3>
+          <p>See my professional background, cybersecurity leadership experience and capabilities.</p>
+        </div>
+        <a class="btn portfolio-cta-button" href="cybersecurity.html">VISIT PORTFOLIO →</a>`;
+      enquirySection.insertAdjacentElement('afterend', portfolioCta);
+
+      const portfolioStyle = document.createElement('style');
+      portfolioStyle.textContent = `
+        #portfolio-cta{max-width:1120px;margin:0 auto;padding:34px 28px 42px;display:flex;align-items:center;justify-content:space-between;gap:28px;border-top:1px solid rgba(37,49,59,.75);}
+        .portfolio-cta-copy span{font:600 9px var(--mono);letter-spacing:.13em;color:var(--teal)}
+        .portfolio-cta-copy h3{font-size:24px;letter-spacing:-.035em;margin-top:7px}
+        .portfolio-cta-copy p{color:var(--dim);font-size:12px;margin-top:5px}
+        .portfolio-cta-button{border:1px solid var(--teal);color:var(--teal);background:rgba(85,224,200,.05);white-space:nowrap}
+        .portfolio-cta-button:hover{background:var(--teal);color:#06110f}
+        @media(max-width:700px){#portfolio-cta{flex-direction:column;align-items:flex-start;padding-top:30px}.portfolio-cta-button{width:100%}}
+      `;
+      document.head.appendChild(portfolioStyle);
+    }
   }
 
   const projectSection = [...document.querySelectorAll('section')].find(section => {
