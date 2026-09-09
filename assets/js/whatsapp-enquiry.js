@@ -1,24 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const showWelcome = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !localStorage.getItem('sk-welcome-seen');
-  if (showWelcome) {
-    const welcome = document.createElement('div');
-    welcome.id = 'sk-welcome';
-    welcome.setAttribute('aria-label', 'Welcome');
-    welcome.innerHTML = `<div class="sk-welcome-grid"></div><div class="sk-welcome-content"><div class="sk-welcome-mark">SK</div><div class="sk-welcome-word" aria-live="polite"></div><div class="sk-welcome-line"></div><span class="sk-welcome-skip">SKIP ↗</span></div>`;
-    document.body.prepend(welcome);
-    document.body.classList.add('sk-welcome-active');
-    const words = ['WELCOME', 'नमस्ते', 'BONJOUR', 'HOLA', 'مرحباً', 'WELCOME'];
-    const word = welcome.querySelector('.sk-welcome-word');
-    let index = 0;
-    const render = () => { word.classList.remove('is-visible'); setTimeout(() => { word.textContent = words[index]; word.classList.add('is-visible'); }, 70); index += 1; };
-    render();
-    const interval = setInterval(render, 300);
-    const finish = () => { clearInterval(interval); localStorage.setItem('sk-welcome-seen', '1'); welcome.classList.add('is-leaving'); document.body.classList.remove('sk-welcome-active'); setTimeout(() => welcome.remove(), 650); };
-    const timer = setTimeout(finish, 2000);
-    welcome.querySelector('.sk-welcome-skip').addEventListener('click', () => { clearTimeout(timer); finish(); });
-  }
-
   const form = document.getElementById('whatsapp-enquiry-form');
+  const addScrollTop = () => {
+    if (document.getElementById('scroll-top')) return;
+    const button = document.createElement('button');
+    button.id = 'scroll-top';
+    button.type = 'button';
+    button.setAttribute('aria-label', 'Scroll to top');
+    button.innerHTML = '<span>↑</span><small>TOP</small>';
+    document.body.appendChild(button);
+    const style = document.createElement('style');
+    style.textContent = `#scroll-top{position:fixed;right:24px;bottom:24px;z-index:90;width:52px;height:52px;border:1px solid rgba(99,230,207,.45);border-radius:50%;background:rgba(8,9,11,.86);backdrop-filter:blur(12px);color:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,visibility .25s,transform .25s,border-color .25s,background .25s;box-shadow:0 12px 30px rgba(0,0,0,.28)}#scroll-top.is-visible{opacity:1;visibility:visible;transform:none}#scroll-top:hover{border-color:var(--teal);background:rgba(99,230,207,.1);transform:translateY(-3px)}#scroll-top span{font:700 17px/1 var(--mono)}#scroll-top small{font:600 6px/1 var(--mono);letter-spacing:.12em;color:var(--soft)}@media(max-width:600px){#scroll-top{right:16px;bottom:16px;width:46px;height:46px}}@media(prefers-reduced-motion:reduce){#scroll-top{transition:none}}`;
+    document.head.appendChild(style);
+    const toggle = () => button.classList.toggle('is-visible', window.scrollY > 500);
+    window.addEventListener('scroll', toggle, {passive:true});
+    button.addEventListener('click', () => window.scrollTo({top:0, behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}));
+    toggle();
+  };
+  addScrollTop();
+
   if (form) {
     const value = (name) => { const data = new FormData(form); return (data.get(name) || '').toString().trim(); };
     const buildMessage = () => ['NEW WEBSITE ENQUIRY','',`Name: ${value('name')}`,`Email: ${value('email')}`,`Phone / WhatsApp: ${value('phone') || 'Not provided'}`,`Business: ${value('business')}`,`Business type: ${value('business_type')}`,`Website needed: ${value('website_type')}`,`Current website: ${value('current_website') || 'None / not provided'}`,`Budget: ${value('budget') || 'Not specified'}`,`Additional services: ${value('services') || 'None'}`,'','PROJECT DETAILS',value('details'),'','Sent from the S Kalyanraman web enquiry form.'].join('\n');
