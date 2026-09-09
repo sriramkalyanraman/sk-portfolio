@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!projects || cards.length < 2) return;
 
   const projectData = [
-    { label:'AISHWARYA SREENIVASAN', url:'https://sriramkalyanraman.github.io/aishwarya-sreenivasan/', shots:[
+    { label:'AISHWARYA SREENIVASAN', url:'https://aishwaryasreenivasan.site', shots:[
       {image:'assets/projects/aishwarya-1.svg',title:'Homepage',subtitle:'Professional psychology / wellbeing website'},
       {image:'assets/projects/aishwarya-2.svg',title:'About & Approach',subtitle:'Clear trust-led content and calm visual hierarchy'},
       {image:'assets/projects/aishwarya-3.svg',title:'Contact',subtitle:'Simple enquiry flow with private contact details redacted'}
