@@ -213,17 +213,17 @@
         <div class="hero-meta"><span><i></i> OPEN TO SELECT ADVISORY</span><span>ENTERPRISE SECURITY · CYBER RESILIENCE · GRC</span></div>`;
 
       right.innerHTML = `
-        <div class="hero-status-card">
-          <div class="hero-status-top"><span>01 / CURRENT FOCUS</span><b>LIVE</b></div>
-          <div class="hero-status-title">Security that works beyond the dashboard.</div>
-          <p>Turning security strategy into operating capability — with clear ownership, measurable risk reduction and practical execution.</p>
+        <div class="hero-status-card web-studio-card">
+          <div class="hero-status-top"><span>01 / DIGITAL STUDIO</span><b>AVAILABLE</b></div>
+          <div class="hero-status-title">Security expertise. Built for the web.</div>
+          <p>I also design and build professional business websites — modern, credible and conversion-focused, with SEO and analytics built in.</p>
           <div class="hero-status-grid">
-            <div><strong>SOC</strong><span>Detection &amp; response</span></div>
-            <div><strong>GRC</strong><span>Risk &amp; compliance</span></div>
-            <div><strong>IR</strong><span>Resilience &amp; readiness</span></div>
-            <div><strong>WEB</strong><span>Digital projects</span></div>
+            <div><strong>WEB</strong><span>Business websites</span></div>
+            <div><strong>SEO</strong><span>Search visibility</span></div>
+            <div><strong>ANALYTICS</strong><span>Measurement &amp; insights</span></div>
+            <div><strong>SECURITY</strong><span>Trust-first design</span></div>
           </div>
-          <a class="hero-status-link" href="#contact">Discuss a security challenge <span>↗</span></a>
+          <a class="hero-status-link web-studio-link" href="index.html">Explore my web design service <span>↗</span></a>
         </div>`;
 
       var style = document.createElement('style');
@@ -245,11 +245,13 @@
         .hero-status-title{margin-top:28px;font-size:25px;line-height:1.12;font-weight:750;letter-spacing:-.025em;max-width:14ch}.hero-status-card p{margin-top:12px;color:var(--text-dim);font-size:13px;line-height:1.65}
         .hero-status-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:24px;border-top:1px solid var(--border);border-left:1px solid var(--border)}.hero-status-grid div{padding:12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}.hero-status-grid strong{display:block;font-family:var(--mono);font-size:11px;color:var(--teal)}.hero-status-grid span{display:block;margin-top:4px;color:var(--text-faint);font-size:10.5px;line-height:1.35}
         .hero-status-link{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px dashed var(--border-strong);font-family:var(--mono);font-size:11px;color:var(--text);text-decoration:none}.hero-status-link:hover{color:var(--teal)}
+        .web-studio-card{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}.web-studio-card:hover{border-color:rgba(79,216,196,.5);transform:translateY(-3px);box-shadow:0 40px 90px -45px #000,0 0 35px rgba(79,216,196,.06)}
+        .web-studio-link{color:var(--teal)}.web-studio-link span{transition:transform .2s ease}.web-studio-link:hover span{transform:translate(3px,-3px)}
         @media(min-width:901px){.hero{padding-top:68px;padding-bottom:72px}.hero-grid{grid-template-columns:minmax(0,1.55fr) minmax(330px,.65fr);gap:clamp(60px,8vw,150px);align-items:center}.hero-grid>div:first-child{max-width:900px}.hero-status-card{max-width:390px;margin-left:auto}.console{margin-top:46px}}
         @media(min-width:1500px){.hero h1{font-size:clamp(62px,5vw,84px)}.hero-status-card{max-width:410px}}
         @media(max-width:900px){.hero{padding-top:58px}.hero-status-card{margin-top:34px}.hero::after{right:-300px}}
         @media(max-width:720px){.hero{padding-top:46px;padding-bottom:56px}.hero h1{font-size:clamp(42px,12vw,60px);max-width:12ch}.hero-sub{font-size:16px;margin-top:20px}.hero-tags{margin-top:20px}.hero-meta{gap:10px 18px}.hero-status-card{padding:20px}.hero-status-title{font-size:22px;margin-top:22px}}
-        @media(prefers-reduced-motion:reduce){.hero-meta i{animation:none}}
+        @media(prefers-reduced-motion:reduce){.hero-meta i{animation:none}.web-studio-card{transition:none}.web-studio-link span{transition:none}}
       `;
       document.head.appendChild(style);
     }
