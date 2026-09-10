@@ -92,6 +92,10 @@
         .certs{max-width:1100px}
         .contact h2.big{font-size:clamp(34px,4vw,54px)}
         .engagement-terminal{width:100%}
+        .footer-contact-links{display:flex!important;flex-direction:row!important;align-items:center;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border);width:100%}
+        .footer-contact-links a{width:42px;height:42px;padding:0!important;justify-content:center;border:1px solid var(--border-strong);border-radius:50%;background:var(--panel);font-size:0!important;color:var(--text-dim);transition:.15s}
+        .footer-contact-links a:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+        .footer-contact-links a svg{width:17px;height:17px;color:currentColor}
       }
       @media(min-width:1500px){
         .wrap,nav.wrap{width:min(94vw,1580px)}
@@ -99,6 +103,9 @@
       }
       @media(max-width:720px){
         .wrap{width:100%;max-width:100%}
+        .footer-contact-links{display:flex!important;flex-direction:row!important;align-items:center;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid var(--border);width:100%}
+        .footer-contact-links a{width:40px;height:40px;padding:0!important;justify-content:center;border:1px solid var(--border-strong);border-radius:50%;background:var(--panel);font-size:0!important;color:var(--text-dim)}
+        .footer-contact-links a svg{width:16px;height:16px;color:currentColor}
       }
     `;
     document.head.appendChild(wide);
@@ -115,7 +122,19 @@
         Array.prototype.slice.call(contactLinks.querySelectorAll('a')).forEach(function (link) {
           var text = (link.textContent || '').trim().toLowerCase();
           var href = (link.getAttribute('href') || '').toLowerCase();
-          if (text.indexOf('open the contact page') !== -1 || href.indexOf('contact.html') !== -1) link.remove();
+          if (text.indexOf('open the contact page') !== -1 || href.indexOf('contact.html') !== -1) {
+            link.remove();
+            return;
+          }
+
+          var label = '';
+          if (href.indexOf('mailto:') === 0) label = 'Email Sriram';
+          else if (href.indexOf('tel:') === 0) label = 'Call Sriram';
+          else if (href.indexOf('linkedin.com') !== -1) label = 'LinkedIn profile';
+          if (label) {
+            link.setAttribute('aria-label', label);
+            link.setAttribute('title', label);
+          }
         });
 
         var footerTarget = footer.querySelector('.wrap') || footer;
@@ -125,18 +144,6 @@
 
       var note = contact.querySelector('.section-note');
       if (note) note.remove();
-
-      Array.prototype.slice.call(contact.querySelectorAll('.contact-links a')).forEach(function (link) {
-        var href = (link.getAttribute('href') || '').toLowerCase();
-        var label = '';
-        if (href.indexOf('mailto:') === 0) label = 'Email Sriram';
-        else if (href.indexOf('tel:') === 0) label = 'Call Sriram';
-        else if (href.indexOf('linkedin.com') !== -1) label = 'LinkedIn profile';
-        if (label) {
-          link.setAttribute('aria-label', label);
-          link.setAttribute('title', label);
-        }
-      });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', refineContact);
