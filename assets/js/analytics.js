@@ -99,8 +99,6 @@
     `;
     document.head.appendChild(wide);
 
-    /* Contact belongs to the single portfolio page. Replace the old compact
-       contact CTA with the complete contact-page content in section 06. */
     function integrateContact() {
       var section = document.getElementById('contact');
       var footer = document.querySelector('footer');
@@ -193,7 +191,75 @@
       });
     }
 
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', integrateContact);
-    else integrateContact();
+    function modernizeHero() {
+      var hero = document.querySelector('.hero');
+      var grid = document.querySelector('.hero-grid');
+      if (!hero || !grid || hero.dataset.modernized === '1') return;
+      var left = grid.children[0];
+      var right = grid.children[1];
+      if (!left || !right) return;
+      hero.dataset.modernized = '1';
+
+      left.innerHTML = `
+        <div class="hero-kicker"><span class="hero-kicker-line"></span> CYBER SECURITY LEAD <span class="hero-kicker-muted">/ IRELAND · UK</span></div>
+        <div class="hero-name">Sriram Kalyanraman</div>
+        <h1>Security leadership for organisations that can't afford guesswork.</h1>
+        <p class="hero-sub">I build and run enterprise security operations — from SOC design and threat detection to board-level risk, resilience and regulatory readiness across telecom, public sector and financial environments.</p>
+        <div class="hero-tags"><span>SOC &amp; Detection</span><span>ISO 27001 / NIS2</span><span>Risk &amp; Resilience</span></div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Start a conversation <span>↗</span></a>
+          <a class="btn btn-ghost" href="#experience">View experience <span>↓</span></a>
+        </div>
+        <div class="hero-meta"><span><i></i> OPEN TO SELECT ADVISORY</span><span>ENTERPRISE SECURITY · CYBER RESILIENCE · GRC</span></div>`;
+
+      right.innerHTML = `
+        <div class="hero-status-card">
+          <div class="hero-status-top"><span>01 / CURRENT FOCUS</span><b>LIVE</b></div>
+          <div class="hero-status-title">Security that works beyond the dashboard.</div>
+          <p>Turning security strategy into operating capability — with clear ownership, measurable risk reduction and practical execution.</p>
+          <div class="hero-status-grid">
+            <div><strong>SOC</strong><span>Detection &amp; response</span></div>
+            <div><strong>GRC</strong><span>Risk &amp; compliance</span></div>
+            <div><strong>IR</strong><span>Resilience &amp; readiness</span></div>
+            <div><strong>WEB</strong><span>Digital projects</span></div>
+          </div>
+          <a class="hero-status-link" href="#contact">Discuss a security challenge <span>↗</span></a>
+        </div>`;
+
+      var style = document.createElement('style');
+      style.id = 'modern-hero-style';
+      style.textContent = `
+        .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(13,20,25,.32),transparent 70%)}
+        .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 0,transparent calc(100% - 1px),rgba(79,216,196,.045) 100%);opacity:.7}
+        .hero::after{content:'';position:absolute;width:520px;height:520px;right:-180px;top:-240px;border:1px solid rgba(79,216,196,.08);border-radius:50%;box-shadow:0 0 0 70px rgba(79,216,196,.018),0 0 0 140px rgba(79,216,196,.012);pointer-events:none}
+        .hero-grid{position:relative;z-index:1}
+        .hero-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--teal);display:flex;align-items:center;gap:9px;margin-bottom:18px}.hero-kicker-line{width:30px;height:1px;background:var(--teal);opacity:.7}.hero-kicker-muted{color:var(--text-faint);letter-spacing:.08em}
+        .hero-name{font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px}
+        .hero h1{font-size:clamp(48px,5.2vw,78px);line-height:.99;letter-spacing:-.045em;max-width:11ch;text-wrap:balance}
+        .hero-sub{max-width:67ch;margin-top:24px;font-size:17px;line-height:1.7;color:var(--text-dim)}
+        .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.hero-tags span{font-family:var(--mono);font-size:10.5px;color:var(--text-dim);border:1px solid var(--border-strong);background:rgba(17,22,29,.62);padding:7px 10px;border-radius:2px}.hero-tags span::before{content:'+';color:var(--teal);margin-right:6px}
+        .hero-actions{margin-top:28px}.hero-actions .btn{padding:13px 18px}.hero-actions .btn span{font-size:14px}
+        .hero-meta{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px 26px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--text-faint)}.hero-meta i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 7px var(--teal);margin-right:7px;vertical-align:middle;animation:pulse 2.4s ease-in-out infinite}
+        .hero-status-card{position:relative;background:linear-gradient(145deg,rgba(20,27,35,.96),rgba(10,14,18,.96));border:1px solid var(--border-strong);border-radius:8px;padding:24px;box-shadow:0 35px 80px -45px #000;overflow:hidden}.hero-status-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--teal)}
+        .hero-status-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--text-faint)}.hero-status-top b{font-weight:600;color:var(--teal);font-size:9px}.hero-status-top b::before{content:'●';margin-right:5px;font-size:7px}
+        .hero-status-title{margin-top:28px;font-size:25px;line-height:1.12;font-weight:750;letter-spacing:-.025em;max-width:14ch}.hero-status-card p{margin-top:12px;color:var(--text-dim);font-size:13px;line-height:1.65}
+        .hero-status-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:24px;border-top:1px solid var(--border);border-left:1px solid var(--border)}.hero-status-grid div{padding:12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}.hero-status-grid strong{display:block;font-family:var(--mono);font-size:11px;color:var(--teal)}.hero-status-grid span{display:block;margin-top:4px;color:var(--text-faint);font-size:10.5px;line-height:1.35}
+        .hero-status-link{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px dashed var(--border-strong);font-family:var(--mono);font-size:11px;color:var(--text);text-decoration:none}.hero-status-link:hover{color:var(--teal)}
+        @media(min-width:901px){.hero{padding-top:68px;padding-bottom:72px}.hero-grid{grid-template-columns:minmax(0,1.55fr) minmax(330px,.65fr);gap:clamp(60px,8vw,150px);align-items:center}.hero-grid>div:first-child{max-width:900px}.hero-status-card{max-width:390px;margin-left:auto}.console{margin-top:46px}}
+        @media(min-width:1500px){.hero h1{font-size:clamp(62px,5vw,84px)}.hero-status-card{max-width:410px}}
+        @media(max-width:900px){.hero{padding-top:58px}.hero-status-card{margin-top:34px}.hero::after{right:-300px}}
+        @media(max-width:720px){.hero{padding-top:46px;padding-bottom:56px}.hero h1{font-size:clamp(42px,12vw,60px);max-width:12ch}.hero-sub{font-size:16px;margin-top:20px}.hero-tags{margin-top:20px}.hero-meta{gap:10px 18px}.hero-status-card{padding:20px}.hero-status-title{font-size:22px;margin-top:22px}}
+        @media(prefers-reduced-motion:reduce){.hero-meta i{animation:none}}
+      `;
+      document.head.appendChild(style);
+    }
+
+    function bootPortfolioEnhancements() {
+      integrateContact();
+      window.setTimeout(modernizeHero, 40);
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootPortfolioEnhancements);
+    else bootPortfolioEnhancements();
   }
 })();
