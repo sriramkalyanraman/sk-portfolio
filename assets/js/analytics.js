@@ -102,5 +102,44 @@
       }
     `;
     document.head.appendChild(wide);
+
+    /* Keep contact on this page: remove the external contact-page CTA and
+       place compact icon-only contact links at the very bottom in the footer. */
+    function refineContact() {
+      var contact = document.querySelector('.contact');
+      var footer = document.querySelector('footer');
+      if (!contact || !footer) return;
+
+      var contactLinks = contact.querySelector('.contact-links');
+      if (contactLinks) {
+        Array.prototype.slice.call(contactLinks.querySelectorAll('a')).forEach(function (link) {
+          var text = (link.textContent || '').trim().toLowerCase();
+          var href = (link.getAttribute('href') || '').toLowerCase();
+          if (text.indexOf('open the contact page') !== -1 || href.indexOf('contact.html') !== -1) link.remove();
+        });
+
+        var footerTarget = footer.querySelector('.wrap') || footer;
+        contactLinks.classList.add('footer-contact-links');
+        footerTarget.appendChild(contactLinks);
+      }
+
+      var note = contact.querySelector('.section-note');
+      if (note) note.remove();
+
+      Array.prototype.slice.call(contact.querySelectorAll('.contact-links a')).forEach(function (link) {
+        var href = (link.getAttribute('href') || '').toLowerCase();
+        var label = '';
+        if (href.indexOf('mailto:') === 0) label = 'Email Sriram';
+        else if (href.indexOf('tel:') === 0) label = 'Call Sriram';
+        else if (href.indexOf('linkedin.com') !== -1) label = 'LinkedIn profile';
+        if (label) {
+          link.setAttribute('aria-label', label);
+          link.setAttribute('title', label);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', refineContact);
+    else refineContact();
   }
 })();
