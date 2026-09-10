@@ -1,4 +1,4 @@
-/* Shared portfolio behaviour. No HTML is injected from dynamic data. */
+/* Shared portfolio behaviour and progressive enhancement. */
 (function () {
   'use strict';
 
@@ -30,7 +30,6 @@
       menu.classList.remove('open');
       menu.setAttribute('aria-hidden', 'true');
     }
-
     toggle.addEventListener('click', function () {
       var open = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!open));
@@ -38,15 +37,10 @@
       menu.classList.toggle('open', !open);
       menu.setAttribute('aria-hidden', String(open));
     });
-
-    menu.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', closeMenu);
-    });
-
+    menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', closeMenu); });
     document.addEventListener('click', function (event) {
       if (!menu.contains(event.target) && !toggle.contains(event.target)) closeMenu();
     });
-
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') closeMenu();
     });
@@ -63,7 +57,6 @@
       { tag: '[training]', text: 'phishing simulation results reviewed' },
       { tag: '[audit]', text: 'ISO 27001 evidence log updated' }
     ];
-
     function appendLine() {
       var lines = feed.querySelectorAll('.line');
       if (lines.length >= 3) lines[0].remove();
@@ -115,6 +108,21 @@
     .entry-body,.cap,.cert,.statement-card,.step,.console,.business-cta{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}.entry-body:hover,.cap:hover,.cert:hover,.statement-card:hover,.step:hover,.console:hover,.business-cta:hover{border-color:rgba(79,216,196,.45);box-shadow:0 18px 45px -32px rgba(79,216,196,.55)}
     .hero-sub strong{position:relative}.hero-sub strong::after{content:'_';color:var(--teal);animation:terminalCursor 1s steps(1) infinite}@keyframes terminalCursor{50%{opacity:0}}
     .section-head{position:relative}.section-head::after{content:'';height:1px;flex:1;max-width:120px;background:linear-gradient(90deg,var(--border-strong),transparent);margin-left:8px}
+
+    /* Interactive capability matrix. */
+    #capabilities .section-head{margin-bottom:25px}
+    .cap-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px;padding:10px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .cap-filters{display:flex;gap:6px;flex-wrap:wrap}.cap-filter{appearance:none;border:1px solid var(--border-strong);background:var(--panel);color:var(--text-faint);padding:7px 11px;border-radius:3px;font:10px var(--mono);letter-spacing:.04em;cursor:pointer;transition:.18s}.cap-filter:hover,.cap-filter.active{border-color:var(--teal);color:var(--teal);background:#10201f}.cap-filter.active{box-shadow:inset 0 0 0 1px rgba(79,216,196,.12)}
+    .cap-readout{font:10px var(--mono);color:var(--text-faint);white-space:nowrap}.cap-readout b{color:var(--teal);font-weight:500}
+    .matrix.cyber-matrix{grid-template-columns:repeat(3,1fr);gap:8px;background:transparent;border:0;border-radius:0;overflow:visible}
+    .cyber-matrix .cap{min-height:142px;background:linear-gradient(145deg,#121920,#0d1217);border:1px solid #27323b;border-radius:5px;padding:18px 19px;position:relative;overflow:hidden;cursor:default;transition:transform .25s ease,border-color .25s ease,background .25s ease,box-shadow .25s ease;display:flex;flex-direction:column;justify-content:space-between}
+    .cyber-matrix .cap::before{content:'';position:absolute;top:0;left:0;width:42px;height:2px;background:var(--teal);opacity:.35;transition:width .3s ease,opacity .3s ease}.cyber-matrix .cap::after{content:'';position:absolute;right:-18px;top:-18px;width:62px;height:62px;border:1px solid rgba(79,216,196,.09);border-radius:50%;box-shadow:0 0 0 12px rgba(79,216,196,.025),0 0 0 24px rgba(79,216,196,.018)}
+    .cyber-matrix .cap:hover{transform:translateY(-5px);border-color:rgba(79,216,196,.55);background:linear-gradient(145deg,#152128,#0e151a);box-shadow:0 18px 40px -28px rgba(79,216,196,.7)}.cyber-matrix .cap:hover::before{width:76px;opacity:1}
+    .cyber-matrix .cap.is-hidden{display:none}.cap-topline{display:flex;align-items:center;justify-content:space-between;gap:8px}.cap-idx{color:#627582!important;font-size:10px!important}.cap-domain{font:8px var(--mono);letter-spacing:.1em;color:var(--text-faint);text-transform:uppercase}.cyber-matrix .cap-name{font-size:15px;line-height:1.35;margin-top:16px;padding-right:25px;font-weight:600}.cap-signal{display:flex;align-items:center;gap:6px;margin-top:13px;font:8px var(--mono);letter-spacing:.08em;color:#5f727d}.cap-signal i{width:5px;height:5px;border-radius:50%;background:var(--teal);box-shadow:0 0 7px rgba(79,216,196,.7)}
+    .cap-featured{grid-column:span 2!important;min-height:158px!important;background:linear-gradient(145deg,#13221f,#0e1718)!important;border-color:rgba(79,216,196,.22)!important}.cap-featured .cap-name{font-size:18px}.cap-featured::before{width:70px!important;opacity:.9!important}
+    @media(max-width:900px){.matrix.cyber-matrix{grid-template-columns:repeat(2,1fr)}.cap-featured{grid-column:span 2!important}}
+    @media(max-width:560px){.cap-toolbar{align-items:flex-start;flex-direction:column;gap:12px}.cap-readout{align-self:flex-end}.matrix.cyber-matrix{grid-template-columns:1fr}.cap-featured{grid-column:span 1!important}.cyber-matrix .cap{min-height:128px}.cap-filters{width:100%}.cap-filter{flex:1 1 auto;text-align:center}.cyber-matrix .cap-name{font-size:14px}}
+    @media(prefers-reduced-motion:reduce){.cyber-matrix .cap,.cyber-matrix .cap::before{transition:none}}
   `;
   document.head.appendChild(hudStyle);
 
@@ -130,6 +138,61 @@
   window.addEventListener('scroll', updateHud, { passive: true });
   window.addEventListener('resize', updateHud, { passive: true });
   updateHud();
+
+  /* Turn the capabilities matrix into an interactive security-domain dashboard. */
+  var capabilities = document.querySelector('#capabilities .matrix');
+  if (capabilities) {
+    capabilities.classList.add('cyber-matrix');
+    var cards = Array.prototype.slice.call(capabilities.querySelectorAll('.cap'));
+    var domains = ['STRATEGY','OPERATIONS','RISK & COMPLIANCE','OPERATIONS','STRATEGY','ENGINEERING','RISK & COMPLIANCE','RISK & COMPLIANCE','RESILIENCE','LEADERSHIP','LEADERSHIP','RISK & COMPLIANCE'];
+    cards.forEach(function (card, index) {
+      var idx = card.querySelector('.cap-idx');
+      var name = card.querySelector('.cap-name');
+      if (!idx || !name) return;
+      var top = document.createElement('div');
+      top.className = 'cap-topline';
+      idx.parentNode.insertBefore(top, idx);
+      top.appendChild(idx);
+      var domain = document.createElement('span');
+      domain.className = 'cap-domain';
+      domain.textContent = domains[index] || 'SECURITY';
+      top.appendChild(domain);
+      var signal = document.createElement('div');
+      signal.className = 'cap-signal';
+      signal.innerHTML = '<i></i> CORE CAPABILITY';
+      card.appendChild(signal);
+      card.setAttribute('data-domain', domains[index] || 'SECURITY');
+      card.setAttribute('tabindex', '0');
+      if (index === 0 || index === 5) card.classList.add('cap-featured');
+    });
+
+    var toolbar = document.createElement('div');
+    toolbar.className = 'cap-toolbar';
+    toolbar.innerHTML = '<div class="cap-filters" role="group" aria-label="Filter capabilities"><button class="cap-filter active" type="button" data-filter="ALL">ALL</button><button class="cap-filter" type="button" data-filter="STRATEGY">STRATEGY</button><button class="cap-filter" type="button" data-filter="OPERATIONS">OPERATIONS</button><button class="cap-filter" type="button" data-filter="RISK & COMPLIANCE">RISK / GRC</button><button class="cap-filter" type="button" data-filter="LEADERSHIP">LEADERSHIP</button></div><span class="cap-readout"><b>12</b> / 12 ACTIVE</span>';
+    capabilities.parentNode.insertBefore(toolbar, capabilities);
+    var readout = toolbar.querySelector('.cap-readout b');
+    toolbar.querySelectorAll('.cap-filter').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var filter = button.getAttribute('data-filter');
+        toolbar.querySelectorAll('.cap-filter').forEach(function (item) { item.classList.toggle('active', item === button); });
+        var visible = 0;
+        cards.forEach(function (card) {
+          var show = filter === 'ALL' || card.getAttribute('data-domain') === filter;
+          card.classList.toggle('is-hidden', !show);
+          if (show) visible += 1;
+        });
+        if (readout) readout.textContent = visible + ' / ' + cards.length;
+      });
+    });
+    cards.forEach(function (card) {
+      card.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          card.classList.toggle('cap-focus');
+        }
+      });
+    });
+  }
 
   /* Reveal content as it enters the viewport. */
   if (!reduceMotion && 'IntersectionObserver' in window) {
@@ -159,18 +222,15 @@
         var y = (event.clientY - rect.top) / rect.height - .5;
         card.style.transform = 'perspective(900px) rotateX(' + (-y * 1.8).toFixed(2) + 'deg) rotateY(' + (x * 2.2).toFixed(2) + 'deg) translateY(-2px)';
       });
-      card.addEventListener('pointerleave', function () {
-        card.style.transform = '';
-      });
+      card.addEventListener('pointerleave', function () { card.style.transform = ''; });
     });
   }
 
-  /* Add a compact keyboard command hint to the primary contact action. */
   var contactAction = document.querySelector('.hero-actions .btn-primary');
   if (contactAction) {
     contactAction.setAttribute('data-shortcut', 'CONTACT');
     var contactStyle = document.createElement('style');
-    contactStyle.textContent = `.hero-actions .btn-primary{position:relative}.hero-actions .btn-primary::after{content:'↗';margin-left:2px;font-size:12px}.hero-actions .btn-primary:focus-visible{outline:2px solid var(--teal);outline-offset:4px}`;
+    contactStyle.textContent = `.hero-actions .btn-primary{position:relative}.hero-actions .btn-primary::after{content:'↗';margin-left:2px;font-size:12px}.hero-actions .btn-primary:focus-visible{outline:2px solid var(--teal);outline-offset:4px}.cap-focus{border-color:var(--teal)!important;box-shadow:0 0 0 1px var(--teal),0 18px 40px -28px rgba(79,216,196,.7)!important}`;
     document.head.appendChild(contactStyle);
   }
 })();
