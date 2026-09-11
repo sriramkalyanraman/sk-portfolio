@@ -213,17 +213,11 @@
         <div class="hero-meta"><span><i></i> OPEN TO SELECT ADVISORY</span><span>ENTERPRISE SECURITY · CYBER RESILIENCE · GRC</span></div>`;
 
       right.innerHTML = `
-        <div class="hero-status-card web-studio-card">
-          <div class="hero-status-top"><span>01 / DIGITAL STUDIO</span><b>AVAILABLE</b></div>
-          <div class="hero-status-title">Security expertise. Built for the web.</div>
-          <p>I also design and build professional business websites — modern, credible and conversion-focused, with SEO and analytics built in.</p>
-          <div class="hero-status-grid">
-            <div><strong>WEB</strong><span>Business websites</span></div>
-            <div><strong>SEO</strong><span>Search visibility</span></div>
-            <div><strong>ANALYTICS</strong><span>Measurement &amp; insights</span></div>
-            <div><strong>SECURITY</strong><span>Trust-first design</span></div>
-          </div>
-          <a class="hero-status-link web-studio-link" href="index.html">Explore my web design service <span>↗</span></a>
+        <div class="business-hero-card">
+          <div class="business-card-kicker">NEED A WEBSITE FOR YOUR BUSINESS?</div>
+          <div class="business-card-title">Professional websites without the agency price tag.</div>
+          <p>Simple, modern business websites from €600 — built to look credible, work on every device, and help customers get in touch.</p>
+          <a href="index.html" class="business-card-link">Visit my web design service <span>→</span></a>
         </div>`;
 
       var style = document.createElement('style');
@@ -240,18 +234,17 @@
         .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.hero-tags span{font-family:var(--mono);font-size:10.5px;color:var(--text-dim);border:1px solid var(--border-strong);background:rgba(17,22,29,.62);padding:7px 10px;border-radius:2px}.hero-tags span::before{content:'+';color:var(--teal);margin-right:6px}
         .hero-actions{margin-top:28px}.hero-actions .btn{padding:13px 18px}.hero-actions .btn span{font-size:14px}
         .hero-meta{margin-top:24px;display:flex;flex-wrap:wrap;gap:16px 26px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--text-faint)}.hero-meta i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 7px var(--teal);margin-right:7px;vertical-align:middle;animation:pulse 2.4s ease-in-out infinite}
-        .hero-status-card{position:relative;background:linear-gradient(145deg,rgba(20,27,35,.96),rgba(10,14,18,.96));border:1px solid var(--border-strong);border-radius:8px;padding:24px;box-shadow:0 35px 80px -45px #000;overflow:hidden}.hero-status-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--teal)}
-        .hero-status-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--text-faint)}.hero-status-top b{font-weight:600;color:var(--teal);font-size:9px}.hero-status-top b::before{content:'●';margin-right:5px;font-size:7px}
-        .hero-status-title{margin-top:28px;font-size:25px;line-height:1.12;font-weight:750;letter-spacing:-.025em;max-width:14ch}.hero-status-card p{margin-top:12px;color:var(--text-dim);font-size:13px;line-height:1.65}
-        .hero-status-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:24px;border-top:1px solid var(--border);border-left:1px solid var(--border)}.hero-status-grid div{padding:12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}.hero-status-grid strong{display:block;font-family:var(--mono);font-size:11px;color:var(--teal)}.hero-status-grid span{display:block;margin-top:4px;color:var(--text-faint);font-size:10.5px;line-height:1.35}
-        .hero-status-link{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px dashed var(--border-strong);font-family:var(--mono);font-size:11px;color:var(--text);text-decoration:none}.hero-status-link:hover{color:var(--teal)}
-        .web-studio-card{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}.web-studio-card:hover{border-color:rgba(79,216,196,.5);transform:translateY(-3px);box-shadow:0 40px 90px -45px #000,0 0 35px rgba(79,216,196,.06)}
-        .web-studio-link{color:var(--teal)}.web-studio-link span{transition:transform .2s ease}.web-studio-link:hover span{transform:translate(3px,-3px)}
-        @media(min-width:901px){.hero{padding-top:68px;padding-bottom:72px}.hero-grid{grid-template-columns:minmax(0,1.55fr) minmax(330px,.65fr);gap:clamp(60px,8vw,150px);align-items:center}.hero-grid>div:first-child{max-width:900px}.hero-status-card{max-width:390px;margin-left:auto}.console{margin-top:46px}}
-        @media(min-width:1500px){.hero h1{font-size:clamp(62px,5vw,84px)}.hero-status-card{max-width:410px}}
-        @media(max-width:900px){.hero{padding-top:58px}.hero-status-card{margin-top:34px}.hero::after{right:-300px}}
-        @media(max-width:720px){.hero{padding-top:46px;padding-bottom:56px}.hero h1{font-size:clamp(42px,12vw,60px);max-width:12ch}.hero-sub{font-size:16px;margin-top:20px}.hero-tags{margin-top:20px}.hero-meta{gap:10px 18px}.hero-status-card{padding:20px}.hero-status-title{font-size:22px;margin-top:22px}}
-        @media(prefers-reduced-motion:reduce){.hero-meta i{animation:none}.web-studio-card{transition:none}.web-studio-link span{transition:none}}
+        .business-hero-card{position:relative;background:linear-gradient(145deg,rgba(20,27,35,.96),rgba(10,14,18,.96));border:1px solid var(--border-strong);border-left:2px solid var(--amber);border-radius:4px;padding:42px 20px 36px;box-shadow:0 35px 80px -45px #000;overflow:hidden}
+        .business-card-kicker{font-family:var(--mono);font-size:10px;line-height:1.4;letter-spacing:.1em;color:var(--amber);font-weight:600}
+        .business-card-title{margin-top:12px;font-size:16px;line-height:1.4;font-weight:750;letter-spacing:-.01em;max-width:30ch}
+        .business-hero-card p{margin-top:7px;color:var(--text-dim);font-size:13px;line-height:1.6;max-width:34ch}
+        .business-card-link{display:inline-flex;align-items:center;gap:7px;margin-top:12px;font-family:var(--mono);font-size:11px;color:var(--teal);text-decoration:none}
+        .business-card-link span{transition:transform .2s ease}.business-card-link:hover{color:var(--teal)}.business-card-link:hover span{transform:translateX(4px)}
+        @media(min-width:901px){.hero{padding-top:68px;padding-bottom:72px}.hero-grid{grid-template-columns:minmax(0,1.55fr) minmax(330px,.65fr);gap:clamp(60px,8vw,150px);align-items:center}.hero-grid>div:first-child{max-width:900px}.business-hero-card{max-width:300px;margin-left:auto}.console{margin-top:46px}}
+        @media(min-width:1500px){.hero h1{font-size:clamp(62px,5vw,84px)}.business-hero-card{max-width:300px}}
+        @media(max-width:900px){.hero{padding-top:58px}.business-hero-card{margin-top:34px}.hero::after{right:-300px}}
+        @media(max-width:720px){.hero{padding-top:46px;padding-bottom:56px}.hero h1{font-size:clamp(42px,12vw,60px);max-width:12ch}.hero-sub{font-size:16px;margin-top:20px}.hero-tags{margin-top:20px}.hero-meta{gap:10px 18px}.business-hero-card{padding:34px 18px 30px}}
+        @media(prefers-reduced-motion:reduce){.hero-meta i{animation:none}.business-card-link span{transition:none}}
       `;
       document.head.appendChild(style);
     }
