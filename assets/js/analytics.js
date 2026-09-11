@@ -215,8 +215,8 @@
       right.innerHTML = `
         <div class="business-hero-card">
           <div class="business-card-kicker">NEED A WEBSITE FOR YOUR BUSINESS?</div>
-          <div class="business-card-title">Professional websites without the agency price tag.</div>
-          <p>Simple, modern business websites from €600 — built to look credible, work on every device, and help customers get in touch.</p>
+          <div class="business-card-title">A sharper digital presence for your business.</div>
+          <p>Modern, credible websites designed to make your business stand out, build trust and turn visitors into customers.</p>
           <a href="index.html" class="business-card-link">Visit my web design service <span>→</span></a>
         </div>`;
 
