@@ -77,6 +77,6 @@
     var body='Name: '+name+'\nEmail: '+email+'\nContact number: '+(phone||'Not provided')+'\nReason: '+reason+'\n\nMessage:\n'+message;
     status.className='portfolio-contact-status';
     status.textContent='OPENING YOUR EMAIL APP…';
-    window.location.href='mailto:sriram.kalyan97@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    window.location.href='mailto:srkgfm@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   });
 })();
